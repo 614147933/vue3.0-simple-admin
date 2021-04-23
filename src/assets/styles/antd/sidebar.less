@@ -1,0 +1,29 @@
+//侧边菜单
+@import 'index';
+.sidebar-container {
+	background-color: #304156;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	display: inline-table;
+	.ant-menu-inline {
+		transition: width 0.28s;
+		width: 256px;
+	}
+	.ant-menu-inline-collapsed {
+		width: 60px;
+	}
+	.ant-menu-inline-collapsed > .ant-menu-item,
+	.ant-menu-inline-collapsed
+		> .ant-menu-item-group
+		> .ant-menu-item-group-list
+		> .ant-menu-item,
+	.ant-menu-inline-collapsed
+		> .ant-menu-item-group
+		> .ant-menu-item-group-list
+		> .ant-menu-submenu
+		> .ant-menu-submenu-title,
+	.ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title {
+        padding: 0 20px !important;
+	}
+}

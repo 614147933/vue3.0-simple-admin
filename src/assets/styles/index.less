@@ -1,0 +1,35 @@
+//样式入口文件
+
+// 公共样式
+@import 'public/index';
+
+// 组件样式
+@import 'component/index';
+
+// 页面业务样式
+@import 'views/index';
+
+// 覆盖antd默认样式
+@import 'antd/index';
+
+body {
+	height: 100%;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+	Microsoft YaHei, Arial, sans-serif;
+}
+
+label {
+	font-weight: 700;
+}
+
+html {
+	height: 100%;
+	box-sizing: border-box;
+}
+
+#app {
+	height: 100%;
+}
