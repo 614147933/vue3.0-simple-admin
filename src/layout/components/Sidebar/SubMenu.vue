@@ -1,47 +1,52 @@
+
 <template>
-  <a-menu-item v-if="!item.children" :key="item.key" @click="subMenuClick">
-    <!-- <PieChartOutlined />
-    <span>{{ item.title }}</span> -->
-    <router-link :to="item.path ? item.path : ''">
-      <PieChartOutlined />
-      <span>{{ item.title }}</span>
-    </router-link>
-  </a-menu-item>
-  <a-sub-menu v-else>
-    <template #title>
-      <span>
-        <MailOutlined /><span>{{ item.title }}</span>
-      </span>
+  <div class="tac">
+    <template v-if="!item.children">
+      <router-link :to="item.path ? item.path : ''">
+        <el-menu-item :index="item.key">
+        {{ item.title }}
+        </el-menu-item>
+      </router-link>
     </template>
-    <sub-menu v-for="child in item.children"  :key="child.key" :item="child" />
-  </a-sub-menu>
+
+    <el-submenu
+      v-else
+      ref="subMenu"
+    >
+      <template #title>
+        <span>{{ item.title }}</span>
+      </template>
+      <sub-menu
+        v-for="child in item.children"
+        :key="child.path"
+        :is-nest="true"
+        :item="child"
+        class="nest-menu"
+      />
+      </el-submenu>
+  </div>
 </template>
+
 <script>
-import {
-  PieChartOutlined,
-  MailOutlined,
-} from '@ant-design/icons-vue';
 export default {
-  name: 'sub-menu',
-  components: {
-    PieChartOutlined,
-    MailOutlined,
-  },
+  name: 'SubMenu',
   props: {
-    menuInfo: {
-      type: Object,
-      default: () => ({}),
-    },
     item: {
       type: Object,
       required: true
     },
   },
   methods: {
-    // subMenu点击了
-    subMenuClick(item) {
-      console.log('点击菜单了', item );
-    },
-  },
-};
+    
+  }
+}
 </script>
+
+<style>
+.logo {
+  height: 42px;
+}
+.tac {
+  width: 201px;
+}
+</style>

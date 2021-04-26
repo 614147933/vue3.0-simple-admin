@@ -6,7 +6,7 @@ module.exports = {
 	publicPath: './',
 	assetsDir: 'assets',
 	devServer: {
-		port: 9999,
+		port: 8888,
 	},
 	chainWebpack: (config) => {
 		// 设定路径映射

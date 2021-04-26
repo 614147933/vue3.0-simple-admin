@@ -1,44 +1,29 @@
 <template>
   <div>
-    <a-button
-      type="primary"
-      @click="toggleCollapsed"
-      style="margin-bottom: 16px"
-    >
-      <MenuUnfoldOutlined v-if="collapsed" />
-      <MenuFoldOutlined v-else />
-    </a-button>
-    <a-menu
-      mode="inline"
-      theme="light"
-      :inline-collapsed="collapsed"
-    >
-      <sub-menu v-for="route in menuList"  :key="route.key" :item="route" />
-    </a-menu>
+    
+    <el-scrollbar wrap-class="scrollbar-wrapper">
+      <div class="logo">
+        logo
+      </div>
+      <el-menu
+        :collapse-transition="false"
+        mode="vertical"
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#409EFF"
+        :default-active="activeMenu"
+      >
+        <sub-menu v-for="route in menuList" :key="route.path" :item="route" />
+      </el-menu>
+    </el-scrollbar>
   </div>
 </template>
 
 <script>
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  // PieChartOutlined,
-  // MailOutlined,
-  // DesktopOutlined,
-  // InboxOutlined,
-  // AppstoreOutlined,
-} from '@ant-design/icons-vue';
 import subMenu from './SubMenu.vue';
 export default {
   components: {
     subMenu,
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    // PieChartOutlined,
-    // MailOutlined,
-    // DesktopOutlined,
-    // InboxOutlined,
-    // AppstoreOutlined,
   },
   data () {
     return {
@@ -99,3 +84,8 @@ export default {
   },
 };
 </script>
+<style>
+.logo {
+  height: 42px;
+}
+</style>
