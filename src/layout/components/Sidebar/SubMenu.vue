@@ -3,7 +3,7 @@
   <div class="tac">
     <template v-if="!item.children">
       <router-link :to="item.path ? item.path : ''">
-        <el-menu-item :index="item.key">
+        <el-menu-item :index="item.path">
         {{ item.title }}
         </el-menu-item>
       </router-link>
@@ -12,6 +12,7 @@
     <el-submenu
       v-else
       ref="subMenu"
+      :index="item.path"
     >
       <template #title>
         <span>{{ item.title }}</span>

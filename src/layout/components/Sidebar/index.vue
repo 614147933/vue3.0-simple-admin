@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <div class="logo">
         logo
@@ -35,7 +34,7 @@ export default {
         {
           key: '1-1',
           title: '首页',
-          path: '/Homepage'
+          path: '/homepage'
         },
         {
           key: '2',
@@ -58,18 +57,23 @@ export default {
           path: '/404'
         },
       ],
-      activeMenu: [],
     };
   },
   computed: {
-
+    activeMenu() {
+      const route = this.$route
+      const { meta, path } = route
+      console.log('获取的路径',meta, path);
+      // if set path, the sidebar will highlight the path you set
+      if (meta.activeMenu) {
+        return meta.activeMenu
+      }
+      return path
+    },
   },
   watch: {
     openKeys (val, oldVal) {
       this.preOpenKeys = oldVal;
-    },
-    activeMenu() {
-      console.log('监听之了');
     },
   },
   methods: {
@@ -86,6 +90,6 @@ export default {
 </script>
 <style>
 .logo {
-  height: 42px;
+  height: 50px;
 }
 </style>

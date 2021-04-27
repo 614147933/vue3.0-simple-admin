@@ -23,8 +23,8 @@ export default {
 </script>
 <style scoped>
 .app-main {
-  border: 2px solid red;
-  min-height: calc(100% - 45px);
+  border: 1px solid red;
+  min-height: calc(100% - 85px);
   width: 100%;
 }
 </style>

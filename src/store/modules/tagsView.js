@@ -15,7 +15,7 @@ const mutations = {
     if (state.cachedViews.includes(view.name)) return;
     if (!view.meta.noCache) {
       state.cachedViews.push(view.name);
-    };
+    }
   },
 };
 const actions = {
