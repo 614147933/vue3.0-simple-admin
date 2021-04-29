@@ -43,11 +43,15 @@ export default {
             {
               key: '2.1',
               title: 'Navigation 3',
-              children: [{ key: '2.1.1', title: 'Option 2.1.1' }],
+              children: [
+                { key: '2.1.1', title: 'Option 2.1.1', path: '/Navigation2.1.1'}
+                ],
+              path: '/Navigation2.1'
             },
             {
               key: '2.2',
               title: 'Navigation 3',
+              path: '/Navigation2.2'
             },
           ],
         },

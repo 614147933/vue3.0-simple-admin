@@ -9,11 +9,18 @@
         :to="{ path: tag.path}"
         tag="span"
         class="tags-view-item"
+        @contextmenu.prevent="openMenu(tag,$event)"
       >
         {{ tag.title }}
         <span class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
       </router-link>
     </scroll-pane>
+    <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
+      <li>Refresh</li>
+      <li>Close</li>
+      <li>Close Others</li>
+      <li>Close All</li>
+    </ul>
   </div>
 </template>
 <script>
@@ -22,7 +29,10 @@ export default {
   components: { ScrollPane },
   data() {
     return {
-
+      visible: false,
+      top: 0,
+      left: 0,
+      selectedTag: {},
     };
   },
   computed: {
@@ -34,6 +44,13 @@ export default {
     $route() {
       this.addTages();
     },
+    visible(value) {
+      if (value) {
+        document.body.addEventListener('click', this.closeMenu)
+      } else {
+        document.body.removeEventListener('click', this.closeMenu)
+      }
+    }
   },
   created() {
     this.addTages();
@@ -51,6 +68,25 @@ export default {
         this.$store.dispatch('tagsView/addView', this.$route);
       }
       return false;
+    },
+    openMenu(tag, e) {
+      const menuMinWidth = 105
+      const offsetLeft = this.$el.getBoundingClientRect().left -201 // container margin left
+      const offsetWidth = this.$el.offsetWidth // container width
+      const maxLeft = offsetWidth - menuMinWidth // left boundary
+      const left = e.clientX - offsetLeft + 15 // 15: margin right
+      if (left > maxLeft) {
+        this.left = maxLeft
+      } else {
+        this.left = left
+      }
+
+      this.top = e.clientY
+      this.visible = true
+      this.selectedTag = tag
+    },
+    closeMenu() {
+      this.visible = false
     },
   },
 };
