@@ -17,7 +17,7 @@
     </scroll-pane>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
       <li>Refresh</li>
-      <li>Close</li>
+      <li @click="closeSelectedTag(selectedTag)">Close</li>
       <li>Close Others</li>
       <li>Close All</li>
     </ul>
@@ -84,6 +84,29 @@ export default {
       this.top = e.clientY
       this.visible = true
       this.selectedTag = tag
+    },
+    closeSelectedTag(view) {
+      console.log('关闭了', view);
+      this.$store.dispatch('tagsView/delView', view).then(({ visitedViews }) => {
+        if (this.isActive(view)) {
+          this.toLastView(visitedViews, view)
+        }
+      })
+    },
+    toLastView(visitedViews, view) {
+      const latestView = visitedViews.slice(-1)[0]
+      if (latestView) {
+        this.$router.push(latestView.fullPath)
+      } else {
+        // now the default is to redirect to the home page if there is no tags-view,
+        // you can adjust it according to your needs.
+        if (view.name === 'Dashboard') {
+          // to reload home page
+          this.$router.replace({ path: '/redirect' + view.fullPath })
+        } else {
+          this.$router.push('/')
+        }
+      }
     },
     closeMenu() {
       this.visible = false
