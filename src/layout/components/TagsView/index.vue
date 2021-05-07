@@ -16,8 +16,8 @@
       </router-link>
     </scroll-pane>
     <ul v-show="visible" :style="{left:left+'px',top:top+'px'}" class="contextmenu">
-      <li>Refresh</li>
-      <li @click="closeSelectedTag(selectedTag)">Close</li>
+      <li @click="refreshSelectedTag(selectedTag)">刷新</li>
+      <li @click="closeSelectedTag(selectedTag)">关闭</li>
       <li>Close Others</li>
       <li>Close All</li>
     </ul>
@@ -85,8 +85,17 @@ export default {
       this.visible = true
       this.selectedTag = tag
     },
+    refreshSelectedTag(view) {
+      this.$store.dispatch('tagsView/delCachedView', view).then(() => {
+        const { fullPath } = view
+        this.$nextTick(() => {
+          this.$router.replace({
+            path: '/redirect' + fullPath
+          })
+        })
+      })
+    },
     closeSelectedTag(view) {
-      console.log('关闭了', view);
       this.$store.dispatch('tagsView/delView', view).then(({ visitedViews }) => {
         if (this.isActive(view)) {
           this.toLastView(visitedViews, view)
