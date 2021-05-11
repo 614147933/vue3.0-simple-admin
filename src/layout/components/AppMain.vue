@@ -1,10 +1,12 @@
 <template>
   <div class="app-main">
+    <router-view :key="key" v-slot="{ Component }">
     <transition name="fade-transform" mode="out-in">
       <keep-alive :include="cachedViews">
-        <router-view :key="key" />
+        <component :is="Component"/>
       </keep-alive>
     </transition>
+    </router-view>
   </div>
 </template>
 <script>

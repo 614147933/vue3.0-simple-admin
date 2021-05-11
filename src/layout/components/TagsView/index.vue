@@ -120,6 +120,9 @@ export default {
     closeMenu() {
       this.visible = false
     },
+    handleScroll() {
+      this.closeMenu()
+    }
   },
 };
 </script>

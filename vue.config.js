@@ -17,7 +17,7 @@ module.exports = {
 
 		// 更改 HTML 的默认 document.title
 		config.plugin('html').tap((args) => {
-			args[0].title = '熊宏杰 - 项目';
+			args[0].title = 'simple-admin';
 			return args;
 		});
 

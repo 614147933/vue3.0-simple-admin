@@ -36,25 +36,25 @@ export default {
           title: '首页',
           path: '/homepage'
         },
-        {
-          key: '2',
-          title: 'Navigation 2',
-          children: [
-            {
-              key: '2.1',
-              title: 'Navigation 3',
-              children: [
-                { key: '2.1.1', title: 'Option 2.1.1', path: '/Navigation2.1.1'}
-                ],
-              path: '/Navigation2.1'
-            },
-            {
-              key: '2.2',
-              title: 'Navigation 3',
-              path: '/Navigation2.2'
-            },
-          ],
-        },
+        // {
+        //   key: '2',
+        //   title: 'Navigation 2',
+        //   children: [
+        //     {
+        //       key: '2.1',
+        //       title: 'Navigation 3',
+        //       children: [
+        //         { key: '2.1.1', title: 'Option 2.1.1', path: '/Navigation2.1.1'}
+        //         ],
+        //       path: '/Navigation2.1'
+        //     },
+        //     {
+        //       key: '2.2',
+        //       title: 'Navigation 3',
+        //       path: '/Navigation2.2'
+        //     },
+        //   ],
+        // },
         {
           key: '3',
           title: '错误页',
