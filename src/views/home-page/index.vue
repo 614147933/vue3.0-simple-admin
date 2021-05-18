@@ -17,6 +17,9 @@ export default {
       return this.$route;
     }
   },
+  created() {
+    
+  },
   methods: {
     getDate(item) {
       console.log('获取时间', item);
