@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="has-logo">
+    <logo :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
-      <div class="logo">logo</div>
       <el-menu
         :collapse-transition="false"
         :collapse="isCollapse"
         mode="vertical"
-        background-color="#545c64"
-        text-color="#fff"
+        background-color="#304156"
+        text-color="#bfcbd9"
         active-text-color="#409EFF"
         :default-active="activeMenu"
       >
@@ -19,10 +19,12 @@
 
 <script>
 import subMenu from "./SubMenu.vue";
+import Logo from './Logo'
 import { mapGetters } from "vuex";
 export default {
   components: {
     subMenu,
+    Logo
   },
   data() {
     return {
@@ -36,25 +38,30 @@ export default {
           title: "首页",
           path: "/homepage",
         },
-        {
-          key: '2',
-          title: 'Navigation 2',
-          children: [
-            {
-              key: '2.1',
-              title: 'Navigation 3',
-              children: [
-                { key: '2.1.1', title: 'Option 2.1.1', path: '/Navigation2.1.1'}
-                ],
-              path: '/Navigation2.1'
-            },
-            {
-              key: '2.2',
-              title: 'Navigation 3',
-              path: '/Navigation2.2'
-            },
-          ],
-        },
+        // {
+        //   key: '2',
+        //   title: 'Navigation 2',
+        //   children: [
+        //     {
+        //       key: '2.1',
+        //       title: 'Navigation 3',
+        //       children: [
+        //         { key: '2.1.1', title: 'Option 2.1.1', path: '/Navigation2.1.1'}
+        //         ],
+        //       path: '/Navigation2.1'
+        //     },
+        //     {
+        //       key: '2.2',
+        //       title: 'Navigation 3',
+        //       path: '/Navigation2.2'
+        //     },
+        //   ],
+        // },
+        // {
+        //   key: "3",
+        //   title: "错误页",
+        //   path: "/404",
+        // },
         {
           key: "3",
           title: "错误页",
@@ -97,7 +104,5 @@ export default {
 };
 </script>
 <style>
-.logo {
-  height: 50px;
-}
+
 </style>
