@@ -59,6 +59,9 @@ export default {
     this.addTages();
   },
   methods: {
+    addRouter() {
+      this.store.dispatch('permission/generateRoutes')
+    },
     isActive(route) {
       return route.path === this.$route.path
     },
