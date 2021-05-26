@@ -11,7 +11,7 @@
         active-text-color="#409EFF"
         :default-active="activeMenu"
       >
-        <sub-menu v-for="route in menuList" :key="route.path" :item="route" />
+        <sub-menu v-for="route in permission_routes" :key="route.path" :item="route" />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -71,7 +71,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["sidebar"]),
+    ...mapGetters([
+      'permission_routes',
+      'sidebar'
+    ]),
     activeMenu() {
       const route = this.$route;
       const { meta, path } = route;
@@ -90,6 +93,12 @@ export default {
     openKeys(val, oldVal) {
       this.preOpenKeys = oldVal;
     },
+  },
+  created() {
+    
+  },
+  mounted() {
+    console.log('获取路由',this.permission_routes);
   },
   methods: {
     toggleCollapsed() {
