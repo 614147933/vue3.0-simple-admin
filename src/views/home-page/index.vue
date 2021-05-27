@@ -6,7 +6,7 @@
 </template>
 <script>
 export default {
-  name: 'homepage',
+  name: 'Homepage',
   data() {
     return {
       message: this.$store.state.tagsView.visitedViews

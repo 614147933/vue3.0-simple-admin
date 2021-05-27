@@ -11,7 +11,7 @@
       </router-link>
     </template> -->
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
-      <router-link :to="onlyOneChild.path ? onlyOneChild.path : ''">
+      <router-link :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="onlyOneChild.path">
           <i class="el-icon-menu my-icon"></i>
           <template #title>
@@ -23,7 +23,7 @@
     <el-submenu v-else ref="subMenu" :index="item.path">
       <template #title>
         <i class="el-icon-menu my-icon"></i>
-        <span>{{ item.meta }}</span>
+        <span>{{ item.meta.title }}</span>
       </template>
       <sub-menu
         v-for="child in item.children"
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import path from 'path'
+import { isExternal } from '@/utils/validate'
 export default {
   name: "SubMenu",
   props: {
@@ -44,6 +46,10 @@ export default {
       type: Object,
       required: true,
     },
+    basePath: {
+      type: String,
+      default: ''
+    }
   },
   data() {
     this.onlyOneChild = null
@@ -74,6 +80,16 @@ export default {
 
       return false
     },
+    resolvePath(routePath) {
+      console.log('返回的地址',routePath);
+      if (isExternal(routePath)) {
+        return routePath
+      }
+      if (isExternal(this.basePath)) {
+        return this.basePath
+      }
+      return path.resolve(this.basePath, routePath)
+    }
   },
 };
 </script>

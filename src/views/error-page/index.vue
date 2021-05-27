@@ -6,7 +6,7 @@
 </template>
 <script>
 export default {
-  name: 'error-page',
+  name: 'Page405',
   data() {
     return {
       

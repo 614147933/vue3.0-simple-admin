@@ -35,15 +35,56 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/',
+    path: '/icon',
     component: Layout,
     children: [
       {
-        path: '/404',
+        path: '/index',
+        component: () => import('@/views/icons/index'),
+        name: 'Icons',
+        meta: { title: '图标' },
+      },
+    ]
+  },
+  // {
+  //   path: '/',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: '/404',
+  //       component: () => import('@/views/error-page/index'),
+  //       name: 'page404',
+  //       meta: { title: '错误' },
+  //     },
+  //   ]
+  // },
+  {
+    path: '/error',
+    component: Layout,
+    name: 'ErrorPages',
+    meta: {
+      title: '错误页面',
+      icon: '404'
+    },
+    children: [
+      {
+        path: '/405',
         component: () => import('@/views/error-page/index'),
-        name: 'page404',
+        name: 'page405',
         meta: { title: '错误' },
       },
+      {
+        path: '401',
+        component: () => import('@/views/error-page/401'),
+        name: 'Page401',
+        meta: { title: '401', noCache: true }
+      },
+      {
+        path: '404',
+        component: () => import('@/views/error-page/404'),
+        name: 'Page404',
+        meta: { title: '404', noCache: true }
+      }
     ]
   },
   {
@@ -84,7 +125,7 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
-  
+
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
