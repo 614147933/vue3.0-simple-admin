@@ -62,13 +62,14 @@ export const constantRoutes = [
     path: '/error',
     component: Layout,
     name: 'ErrorPages',
+    redirect: '/error/405',
     meta: {
       title: '错误页面',
       icon: '404'
     },
     children: [
       {
-        path: '/405',
+        path: '405',
         component: () => import('@/views/error-page/index'),
         name: 'page405',
         meta: { title: '错误' },

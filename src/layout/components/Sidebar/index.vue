@@ -11,7 +11,7 @@
         active-text-color="#409EFF"
         :default-active="activeMenu"
       >
-        <sub-menu v-for="route in permission_routes" :key="route.path" :item="route" />
+        <sub-menu v-for="route in permission_routes" :key="route.path" :item="route" :base-path="route.path"/>
       </el-menu>
     </el-scrollbar>
   </div>
