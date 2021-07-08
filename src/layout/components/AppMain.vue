@@ -17,7 +17,6 @@ export default {
       return this.$store.state.tagsView.cachedViews;
     },
     key() {
-      // console.log('执行了', this.$route.path);
       return this.$route.path;
     }
   }
